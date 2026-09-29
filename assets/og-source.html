@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Social preview source</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        padding: 88px 80px 0;
+        overflow: hidden;
+        color: #fdfefe;
+        background: #16242c;
+        font-family: "Barlow", Arial, sans-serif;
+      }
+      .lanes {
+        display: flex;
+        gap: 20px;
+      }
+      .lanes i {
+        width: 86px;
+        height: 10px;
+        background: #f4b12a;
+      }
+      h1 {
+        margin: 46px 0 0;
+        font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+        font-size: 104px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1;
+      }
+      h2 {
+        margin: 22px 0 0;
+        color: #f4b12a;
+        font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1;
+      }
+      p {
+        margin: 26px 0 0;
+        color: #b9c5c9;
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 1.45;
+      }
+      .van {
+        position: absolute;
+        bottom: 54px;
+        left: 80px;
+        width: 340px;
+      }
+      .van path {
+        fill: #f4b12a;
+      }
+      .van circle {
+        fill: #16242c;
+      }
+      .kerb {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 14px;
+        background: #f4b12a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lanes"><i></i><i></i><i></i></div>
+    <h1>Maa Tara Solutions Ltd</h1>
+    <h2>Reliable transport. Smarter logistics.</h2>
+    <p>
+      Courier and logistics based in Norwich, working across the UK<br />
+      Same-day, next-day, dedicated and multi-drop delivery
+    </p>
+    <svg class="van" viewBox="0 0 160 70" aria-hidden="true">
+      <path d="M6 54V9h118v45z" />
+      <path d="M124 54V31h14l14 13v10z" />
+      <circle cx="34" cy="55" r="7" />
+      <circle cx="140" cy="55" r="7" />
+    </svg>
+    <div class="kerb"></div>
+  </body>
+</html>
