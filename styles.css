@@ -849,8 +849,16 @@ a {
 .coverage {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: clamp(32px, 4vw, 72px);
+  gap: 18px;
+  align-items: stretch;
   margin-top: 46px;
+}
+
+.coverage-reach,
+.coverage-customers {
+  padding: 28px 28px 12px;
+  border: 1px solid var(--kerb);
+  background: var(--white);
 }
 
 .coverage h3 {
@@ -858,32 +866,43 @@ a {
 }
 
 .coverage p {
-  max-width: 56ch;
-  margin-top: 14px;
+  max-width: none;
+  margin-top: 12px;
   color: var(--tarmac);
   font-size: 16.5px;
 }
 
 .reach-bands {
-  margin: 30px 0 0;
+  margin: 22px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .reach-bands li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 148px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
-  padding: 10px 0;
-  color: var(--tarmac);
+  padding: 16px 0;
+  border-top: 1px solid var(--kerb);
+  color: var(--steel);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 650;
+}
+
+.reach-label {
+  line-height: 1.2;
+}
+
+.reach-track {
+  display: block;
+  height: 12px;
+  background: var(--fog-deep);
 }
 
 .reach-bar {
-  order: -1;
-  height: 12px;
+  display: block;
+  height: 100%;
   background: var(--steel);
 }
 
@@ -901,22 +920,15 @@ a {
   background: var(--hivis);
 }
 
-.reach-note {
-  max-width: 46ch;
-  margin: 16px 0 0;
-  color: var(--slate);
-  font-size: 14.5px;
-}
-
 .customer-list {
-  margin: 14px 0 0;
+  margin: 22px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .customer-list li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--kerb);
+  padding: 16px 0;
+  border-top: 1px solid var(--kerb);
   font-size: 16px;
 }
 
@@ -956,7 +968,7 @@ a {
 
 .contact-channels li {
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr) auto;
+  grid-template-columns: 96px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   padding: 16px 0;
@@ -978,8 +990,25 @@ a {
   overflow-wrap: anywhere;
 }
 
-a.channel-value:hover {
+button.channel-value {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.channel-value:hover,
+button.channel-value.is-copied {
   color: var(--hivis);
+}
+
+.hero-copy-status {
+  min-height: 1.3em;
+  margin: 10px 0 0;
+  color: var(--signal);
+  font-size: 14px;
+  font-weight: 650;
 }
 
 .channel-static {
@@ -1150,11 +1179,38 @@ a.channel-value:hover {
   }
 
   .run-road {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: stretch;
     padding-top: 0;
   }
 
   .run-lane {
-    display: none;
+    display: block;
+    width: 16px;
+    height: auto;
+    justify-self: center;
+    align-self: stretch;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 2px solid rgba(198, 208, 205, 0.35);
+    border-right: 2px solid rgba(198, 208, 205, 0.35);
+    background: repeating-linear-gradient(
+      180deg,
+      rgba(244, 177, 42, 0.9) 0 16px,
+      transparent 16px 32px
+    );
+    background-position: center;
+    background-size: 2px 32px;
+  }
+
+  .run-marker {
+    top: var(--marker-pos, 10%);
+    bottom: auto;
+    left: 50%;
+    width: 44px;
+    transform: translate(-50%, -50%);
   }
 
   .run-stages {
@@ -1180,11 +1236,8 @@ a.channel-value:hover {
   }
 
   .contact-channels li {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .channel-label {
-    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
   }
 
   .van {
@@ -1221,6 +1274,16 @@ a.channel-value:hover {
   .hero-facts {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .reach-bands li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .coverage-reach,
+  .coverage-customers {
+    padding: 22px 18px 8px;
   }
 }
 

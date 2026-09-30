@@ -178,17 +178,8 @@
       return picked ? picked.value : "";
     }
 
-    function noteFor(service, vehicle) {
-      if (service === "Transport coordination") {
-        return "We will look at what the movement needs and coordinate the transport, including sourcing a subcontracted operator where that is the right fit.";
-      }
-      if (vehicle === "To be advised") {
-        return "Tell us what the load is and we will match a vehicle to it, using our own, hired or subcontracted capacity.";
-      }
-      if (service === "Same-day delivery") {
-        return "Same-day work depends on the capacity available when you call, so the sooner we know, the better the answer.";
-      }
-      return "We will confirm the vehicle and timing we can cover before anything is booked.";
+    function noteFor() {
+      return "Send this across and we will take it from there.";
     }
 
     function sheetText() {
@@ -220,7 +211,7 @@
       if (sheetFields.service) sheetFields.service.textContent = service;
       if (sheetFields.vehicle) sheetFields.vehicle.textContent = vehicle;
       if (sheetFields.distance) sheetFields.distance.textContent = distance;
-      if (sheetNote) sheetNote.textContent = noteFor(service, vehicle);
+      if (sheetNote) sheetNote.textContent = noteFor();
 
       if (emailLink) {
         var address = readEmail();
@@ -281,13 +272,13 @@
         copyText(sheetText()).then(
           function () {
             if (plannerStatus) {
-              plannerStatus.textContent = "Job sheet copied to your clipboard.";
+              plannerStatus.textContent = "Job copied to your clipboard.";
             }
           },
           function () {
             if (plannerStatus) {
               plannerStatus.textContent =
-                "Copying is blocked in this browser. Use Email this job sheet instead.";
+                "Copying is blocked in this browser. Use Email this job instead.";
             }
           }
         );
@@ -309,7 +300,7 @@
         updateSheet();
         if (fleetStatus) {
           fleetStatus.textContent =
-            "Job sheet updated: " + radio.value + ". It is ready at the top of the page.";
+            "Job updated: " + radio.value + ". It is ready at the top of the page.";
         }
       });
     }
@@ -325,12 +316,16 @@
           var value = button.getAttribute("data-copy");
           copyText(value).then(
             function () {
+              var label = button.getAttribute("data-label") || value;
+              var status = button.closest(".hero-copy")
+                ? document.querySelector(".hero-copy-status")
+                : copyStatus;
               button.classList.add("is-copied");
-              button.textContent = "Copied";
-              if (copyStatus) copyStatus.textContent = "Copied " + value;
+              if (status) status.textContent = "Copied " + value;
               window.setTimeout(function () {
                 button.classList.remove("is-copied");
-                button.textContent = "Copy";
+                button.textContent = label;
+                if (status) status.textContent = "";
               }, 2000);
             },
             function () {

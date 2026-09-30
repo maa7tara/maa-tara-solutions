@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Maa Tara Solutions">
-  <rect width="64" height="64" rx="6" fill="#16242C" />
-  <g fill="none" stroke="#F4B12A" stroke-width="5" stroke-linecap="square">
-    <path d="M8 44h48" />
-    <path d="M18 22l10 16 10-16" />
-    <path d="M38 22l10 16" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Maa Tara Solutions">
+  <rect width="32" height="32" rx="3" fill="#16242C" />
+  <g fill="none" stroke="#F4B12A" stroke-width="2.4" stroke-linecap="square">
+    <path d="M5 24h22" />
+    <path d="M7 17l9-6 9 6" />
   </g>
 </svg>
