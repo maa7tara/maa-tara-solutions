@@ -1096,6 +1096,701 @@ button.channel-value.is-copied {
   font-size: 13.5px;
 }
 
+/* ---------- business contracts page ---------- */
+
+/* Components below set their own display, so make sure hidden still wins. */
+[hidden] {
+  display: none !important;
+}
+
+.fc-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 22px clamp(36px, 5vw, 76px);
+  align-items: end;
+  width: var(--page);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 84px) 0 clamp(40px, 5vw, 64px);
+}
+
+.fc-intro h1 {
+  font-size: clamp(44px, 6vw, 84px);
+  letter-spacing: -0.015em;
+}
+
+.fc-fit {
+  margin: 0;
+  padding: 0;
+  border-top: 4px solid var(--hivis);
+  list-style: none;
+}
+
+.fc-fit li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--kerb);
+  color: var(--tarmac);
+  font-size: 15.5px;
+}
+
+.fc-fit strong {
+  color: var(--steel);
+}
+
+.fc-oneoff {
+  grid-column: 1 / -1;
+  color: var(--slate);
+  font-size: 15px;
+}
+
+.fc-band {
+  padding-top: clamp(40px, 5vw, 64px);
+}
+
+.fc-noscript {
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--hivis);
+  background: var(--white);
+}
+
+.fc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+.fc-form {
+  padding: 28px clamp(18px, 3vw, 34px) 26px;
+  border: 1px solid var(--steel);
+  border-radius: 4px;
+  background: var(--white);
+  box-shadow: 10px 12px 0 rgba(22, 36, 44, 0.08);
+}
+
+.fc-side {
+  position: sticky;
+  top: 102px;
+}
+
+.fc-side .jobsheet {
+  margin-top: 0;
+}
+
+.fc-side .jobsheet-row dd {
+  overflow-wrap: anywhere;
+}
+
+/* progress */
+
+.fc-progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.fc-progress li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 4px solid var(--kerb);
+  color: var(--slate);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fc-progress span {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--kerb);
+  border-radius: 50%;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-progress li.is-done {
+  border-top-color: var(--steel);
+  color: var(--steel);
+}
+
+.fc-progress li.is-done span {
+  border-color: var(--steel);
+  color: var(--white);
+  background: var(--steel);
+}
+
+.fc-progress li[aria-current="step"] {
+  border-top-color: var(--hivis);
+  color: var(--steel);
+}
+
+.fc-progress li[aria-current="step"] span {
+  border-color: var(--steel);
+  background: var(--hivis);
+}
+
+/* steps */
+
+.fc-step {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.fc-step:focus {
+  outline: none;
+}
+
+.fc-step-title {
+  padding: 0;
+  font-family: var(--display);
+  font-size: clamp(30px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.fc-step-lede {
+  margin-top: 8px;
+  color: var(--slate);
+  font-size: 15.5px;
+}
+
+.fc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+  margin-top: 22px;
+}
+
+.fc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.fc-field-wide {
+  margin-top: 22px;
+}
+
+.fc-field-inline {
+  max-width: 260px;
+  margin-top: 14px;
+}
+
+.fc-field label,
+.fc-panel-title {
+  color: var(--steel);
+  font-size: 14.5px;
+  font-weight: 650;
+}
+
+.fc-opt {
+  color: var(--slate);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.fc-field input,
+.fc-field select,
+.fc-field textarea,
+.fc-unit select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #9aa8ad;
+  border-radius: 2px;
+  color: var(--steel);
+  background: var(--white);
+  font-family: var(--body);
+  font-size: 16px;
+}
+
+.fc-field textarea {
+  min-height: 0;
+  resize: vertical;
+}
+
+.fc-field input:hover,
+.fc-field select:hover,
+.fc-field textarea:hover {
+  border-color: var(--tarmac);
+}
+
+.fc-field input:focus,
+.fc-field select:focus,
+.fc-field textarea:focus {
+  border-color: var(--steel);
+  outline: 3px solid var(--hivis);
+  outline-offset: 0;
+}
+
+.fc-field [aria-invalid="true"] {
+  border-color: #b3261e;
+  border-width: 2px;
+}
+
+.fc-unit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 104px;
+  gap: 6px;
+}
+
+.fc-hint {
+  margin-top: 6px;
+  color: var(--slate);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.fc-field .fc-hint {
+  margin-top: 0;
+}
+
+.fc-error {
+  order: 10;
+  margin-top: 6px;
+  padding-left: 10px;
+  border-left: 3px solid #b3261e;
+  color: #b3261e;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.fc-errors {
+  margin-bottom: 22px;
+  padding: 16px 18px;
+  border: 2px solid #b3261e;
+  border-radius: 2px;
+  background: #fdf3f2;
+}
+
+.fc-errors:focus {
+  outline: 3px solid var(--hivis-deep);
+}
+
+.fc-errors-title {
+  font-weight: 700;
+}
+
+.fc-errors ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.fc-errors a {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.fc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.fc-single,
+.fc-sub {
+  margin-top: 18px;
+}
+
+/* demand choice cards */
+
+.fc-choice {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.fc-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.fc-choice label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px 16px 50px;
+  border: 1px solid var(--kerb);
+  border-left: 4px solid var(--kerb);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.fc-choice label:hover {
+  border-color: var(--tarmac);
+}
+
+.fc-choice strong {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.1;
+}
+
+.fc-choice span {
+  color: var(--slate);
+  font-size: 14px;
+}
+
+.fc-choice label::before {
+  position: absolute;
+  top: 17px;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9aa8ad;
+  border-radius: 50%;
+  background: var(--white);
+  content: "";
+}
+
+.fc-choice input:checked + label::before {
+  border: 6px solid var(--steel);
+}
+
+.fc-choice input:checked + label {
+  border-color: var(--steel);
+  border-left-color: var(--hivis);
+  background: var(--fog);
+}
+
+.fc-choice input:focus-visible + label {
+  outline: 3px solid var(--hivis-deep);
+  outline-offset: 2px;
+}
+
+.fc-panel {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+  padding: 20px;
+  background: var(--fog);
+}
+
+.fc-panel > .fc-grid {
+  margin-top: 14px;
+}
+
+/* vehicle steppers */
+
+.fc-qty {
+  margin-top: 10px;
+}
+
+.fc-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--kerb);
+}
+
+.fc-qty-row label {
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+.fc-stepper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  border: 1px solid #9aa8ad;
+  border-radius: 2px;
+  background: var(--white);
+}
+
+.fc-stepper button {
+  width: 42px;
+  border: 0;
+  color: var(--steel);
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.fc-stepper button:hover {
+  background: var(--fog-deep);
+}
+
+.fc-stepper input {
+  width: 52px;
+  height: 42px;
+  border: 0;
+  border-inline: 1px solid var(--kerb);
+  color: var(--steel);
+  background: transparent;
+  font-family: var(--body);
+  font-size: 17px;
+  font-weight: 650;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+}
+
+.fc-stepper input::-webkit-outer-spin-button,
+.fc-stepper input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.fc-qty-total {
+  margin-top: 14px;
+  font-weight: 700;
+}
+
+/* estimate */
+
+.fc-estimate {
+  margin-top: 22px;
+  padding: 18px;
+  border-left: 4px solid var(--hivis);
+  background: var(--white);
+}
+
+.fc-estimate-title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.fc-estimate-lede {
+  margin-top: 8px;
+  color: var(--tarmac);
+  font-size: 15px;
+}
+
+.fc-estimate-table {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-estimate-table th,
+.fc-estimate-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--kerb);
+  text-align: left;
+}
+
+.fc-estimate-table thead th {
+  color: var(--slate);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fc-estimate-table tbody th {
+  font-weight: 600;
+}
+
+.fc-estimate-table tr.is-best {
+  background: rgba(244, 177, 42, 0.16);
+}
+
+.fc-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 2px;
+  color: var(--steel);
+  background: var(--hivis);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.fc-estimate .btn {
+  margin-top: 16px;
+}
+
+/* review */
+
+.fc-review {
+  margin-top: 22px;
+}
+
+.fc-review-block {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--hivis);
+  background: var(--fog);
+}
+
+.fc-review-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.fc-review h3 {
+  font-size: 22px;
+}
+
+.fc-review dl {
+  margin: 0;
+}
+
+.fc-review .jobsheet-row dd {
+  max-width: 62%;
+  overflow-wrap: anywhere;
+}
+
+.fc-edit {
+  padding: 0;
+  border: 0;
+  color: var(--steel);
+  background: transparent;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.fc-consent {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--kerb);
+}
+
+.fc-privacy {
+  color: var(--tarmac);
+  font-size: 14px;
+}
+
+.fc-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 12px;
+  margin-top: 14px;
+}
+
+.fc-check input {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--steel);
+}
+
+.fc-check label {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 550;
+}
+
+.fc-check .fc-error {
+  flex-basis: 100%;
+}
+
+.fc-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--kerb);
+}
+
+.fc-nav [data-next] {
+  margin-left: auto;
+  min-width: 150px;
+}
+
+@media (max-width: 1120px) and (min-width: 861px) {
+  .site-header nav {
+    gap: 18px;
+  }
+
+  .site-header nav a {
+    font-size: 14px;
+  }
+
+  .nav-cta {
+    padding-inline: 14px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .fc-intro,
+  .fc-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fc-side {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .fc-grid,
+  .fc-choice {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fc-progress li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0;
+  }
+
+  .fc-progress li[aria-current="step"] {
+    font-size: 12.5px;
+  }
+
+  .fc-progress span {
+    font-size: 12.5px;
+  }
+
+  .fc-panel {
+    padding: 16px 14px;
+  }
+
+  .fc-nav .btn {
+    flex: 1 1 0;
+  }
+
+  .fc-review .jobsheet-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .fc-review .jobsheet-row dd {
+    max-width: none;
+    text-align: left;
+  }
+}
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 1000px) {

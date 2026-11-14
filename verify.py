@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).parent
-HTML = ROOT / "index.html"
+PAGES = (ROOT / "index.html", ROOT / "fleet-contracts.html")
 
 PLACEHOLDERS = (
     "PHONE_TBC",
@@ -77,8 +77,8 @@ def local_target(href: str) -> Path | None:
     return ROOT / unquote(parsed.path)
 
 
-def verify() -> tuple[list[str], list[str]]:
-    text = HTML.read_text(encoding="utf-8")
+def verify(page: Path) -> tuple[list[str], list[str]]:
+    text = page.read_text(encoding="utf-8")
     parser = SiteParser()
     parser.feed(text)
 
@@ -151,10 +151,14 @@ def verify() -> tuple[list[str], list[str]]:
 
 
 if __name__ == "__main__":
-    found_errors, found_warnings = verify()
-    for warning in found_warnings:
-        print(f"WARN: {warning}")
-    if found_errors:
-        print("\n".join(f"FAIL: {error}" for error in found_errors))
+    failed = False
+    for page in PAGES:
+        found_errors, found_warnings = verify(page)
+        for warning in found_warnings:
+            print(f"WARN: {page.name}: {warning}")
+        if found_errors:
+            print("\n".join(f"FAIL: {page.name}: {error}" for error in found_errors))
+            failed = True
+    if failed:
         raise SystemExit(1)
     print("PASS: structure, links, control wiring, and metadata")

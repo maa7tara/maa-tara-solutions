@@ -28,6 +28,8 @@ after editing to confirm nothing was missed.
 | `index.html` | The entire page: content, structure and metadata |
 | `styles.css` | All styling, including the responsive and print rules |
 | `script.js` | Menu, scrollspy, tab groups, job planner and copy buttons |
+| `fleet-contracts.html` | Business contracts page: multi-step enquiry form for recurring work |
+| `fleet-contracts.js` | Wizard steps, show/hide logic, validation, fleet estimate and email send |
 | `verify.py` | Checks structure, links, control wiring and metadata |
 | `assets/favicon.svg` | Browser tab icon |
 | `assets/og-image.png` | Preview image used when the link is shared |

@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Recurring, contracted van capacity for UK businesses. Tell Maa Tara Solutions Ltd your regular vehicle needs or your monthly freight volume and we will scope a fleet for you."
+    />
+    <meta name="theme-color" content="#16242C" />
+    <meta property="og:title" content="Business contracts — Maa Tara Solutions Ltd" />
+    <meta
+      property="og:description"
+      content="Regular weekly runs, monthly vehicle allocations and multi-month contracts for UK businesses."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta
+      property="og:url"
+      content="https://maa7tara.github.io/maa-tara-solutions/fleet-contracts.html"
+    />
+    <meta
+      property="og:image"
+      content="https://maa7tara.github.io/maa-tara-solutions/assets/og-image.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Maa Tara Solutions Ltd — reliable transport, smarter logistics"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://maa7tara.github.io/maa-tara-solutions/assets/og-image.png"
+    />
+    <link
+      rel="canonical"
+      href="https://maa7tara.github.io/maa-tara-solutions/fleet-contracts.html"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Business contracts — Maa Tara Solutions Ltd</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="index.html#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="presentation" focusable="false">
+            <path d="M5 24h22" />
+            <path d="M7 17l9-6 9 6" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          Maa Tara Solutions
+          <small>Courier &amp; logistics</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" aria-label="Primary">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#how-it-works">How a job runs</a>
+        <a href="index.html#vehicles">Vehicles</a>
+        <a href="index.html#coverage">Coverage</a>
+        <a class="is-current" href="fleet-contracts.html" aria-current="page">Business contracts</a>
+        <a class="nav-cta" href="index.html#contact">Get a quote</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="fc-intro" aria-labelledby="fc-title">
+        <div class="fc-intro-copy">
+          <h1 id="fc-title">Regular vehicle capacity, on contract.</h1>
+          <p class="hero-lede">
+            For businesses that need vans week in, week out. Tell us the
+            vehicles you need, or tell us how much you move each month and we
+            will work out the fleet. It takes about five minutes.
+          </p>
+        </div>
+        <ul class="fc-fit">
+          <li><strong>Fixed weekly runs</strong> — the same days, every week</li>
+          <li><strong>Monthly allocations</strong> — a set number of vehicle-days</li>
+          <li><strong>Contracts</strong> — rolling monthly up to 24 months and beyond</li>
+        </ul>
+        <p class="fc-oneoff">
+          Need a single, one-off delivery? Use
+          <a href="index.html#planner">Book a job</a> on our homepage instead.
+        </p>
+      </section>
+
+      <section class="band fc-band" aria-label="Business contract enquiry">
+        <noscript>
+          <p class="fc-noscript">
+            This form needs JavaScript. You can email your requirements
+            straight to Maa7tara@gmail.com or phone 07741801735.
+          </p>
+        </noscript>
+
+        <div class="fc-layout">
+          <form class="fc-form" id="fleet-form" novalidate>
+            <ol class="fc-progress" aria-label="Form progress">
+              <li data-progress="1" aria-current="step"><span>1</span> Business</li>
+              <li data-progress="2"><span>2</span> Demand</li>
+              <li data-progress="3"><span>3</span> Schedule</li>
+              <li data-progress="4"><span>4</span> Operations</li>
+              <li data-progress="5"><span>5</span> Review</li>
+            </ol>
+
+            <div class="fc-errors" role="alert" aria-live="assertive" tabindex="-1" hidden></div>
+
+            <!-- ---------- step 1: business ---------- -->
+            <fieldset class="fc-step" data-step="1">
+              <legend class="fc-step-title">About your business</legend>
+              <p class="fc-step-lede">So we know who we are quoting for and where you operate.</p>
+
+              <div class="fc-grid">
+                <div class="fc-field">
+                  <label for="fc-company">Company name</label>
+                  <input id="fc-company" name="company" type="text" autocomplete="organization" required />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-crn">Companies House number <span class="fc-opt">optional</span></label>
+                  <input id="fc-crn" name="companyNumber" type="text" inputmode="text" maxlength="8" autocomplete="off" />
+                  <p class="fc-hint">Eight characters, for example 01234567 or SC123456. Speeds up opening a credit account.</p>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-sector">Industry sector</label>
+                  <select id="fc-sector" name="sector" required>
+                    <option value="">Choose a sector</option>
+                    <option>Retail and e-commerce</option>
+                    <option>Wholesale and distribution</option>
+                    <option>Manufacturing</option>
+                    <option>Construction and building supplies</option>
+                    <option>Food and drink</option>
+                    <option>Healthcare and pharmaceutical</option>
+                    <option>Automotive and parts</option>
+                    <option>Furniture and white goods</option>
+                    <option>Print, publishing and media</option>
+                    <option>Events and exhibitions</option>
+                    <option>Courier or transport operator</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="fc-field" data-show-when="sector:Other">
+                  <label for="fc-sector-other">Your sector</label>
+                  <input id="fc-sector-other" name="sectorOther" type="text" required />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-name">Contact name</label>
+                  <input id="fc-name" name="contactName" type="text" autocomplete="name" required />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-role">Job title <span class="fc-opt">optional</span></label>
+                  <input id="fc-role" name="jobTitle" type="text" autocomplete="organization-title" />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-email">Business email</label>
+                  <input id="fc-email" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-phone">UK phone number</label>
+                  <input id="fc-phone" name="phone" type="tel" autocomplete="tel" placeholder="07123 456789" required data-validate="phone" />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-postcode">Business postcode</label>
+                  <input id="fc-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="NR1 1AA" maxlength="8" required data-validate="postcode" />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-region">Region</label>
+                  <select id="fc-region" name="region" required>
+                    <option value="">Choose a region</option>
+                    <option>London</option>
+                    <option>South East</option>
+                    <option>East of England</option>
+                    <option>South West</option>
+                    <option>West Midlands</option>
+                    <option>East Midlands</option>
+                    <option>Yorkshire and the Humber</option>
+                    <option>North West</option>
+                    <option>North East</option>
+                    <option>Wales</option>
+                    <option>Scotland</option>
+                    <option>Northern Ireland</option>
+                    <option>Several regions</option>
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="console-field">
+                <legend>Best way to reach you</legend>
+                <div class="options">
+                  <input type="radio" name="contactPref" id="pref-either" value="Phone or email" checked />
+                  <label for="pref-either">Either</label>
+                  <input type="radio" name="contactPref" id="pref-phone" value="Phone" />
+                  <label for="pref-phone">Phone</label>
+                  <input type="radio" name="contactPref" id="pref-email" value="Email" />
+                  <label for="pref-email">Email</label>
+                </div>
+              </fieldset>
+            </fieldset>
+
+            <!-- ---------- step 2: demand ---------- -->
+            <fieldset class="fc-step" data-step="2">
+              <legend class="fc-step-title">Your vehicle demand</legend>
+              <p class="fc-step-lede">Pick whichever is easier. You can switch at any time.</p>
+
+              <fieldset class="fc-choice">
+                <legend class="fc-sr">How would you like to give us your demand?</legend>
+                <input type="radio" name="demandMode" id="mode-known" value="known" checked />
+                <label for="mode-known">
+                  <strong>I know the vehicles I need</strong>
+                  <span>Choose the van types and how many</span>
+                </label>
+                <input type="radio" name="demandMode" id="mode-volume" value="volume" />
+                <label for="mode-volume">
+                  <strong>Work it out from my volumes</strong>
+                  <span>Tell us pallets, weight or cubic metres per month</span>
+                </label>
+              </fieldset>
+
+              <div class="fc-panel" data-show-when="demandMode:known">
+                <p class="fc-panel-title" id="qty-title">Vehicles needed on each working day</p>
+                <div class="fc-qty" role="group" aria-labelledby="qty-title">
+                  <div class="fc-qty-row">
+                    <label for="qty-small">Small van</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer small van">&minus;</button>
+                      <input id="qty-small" name="qtySmall" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="Small van" />
+                      <button type="button" data-step-by="1" aria-label="One more small van">+</button>
+                    </div>
+                  </div>
+                  <div class="fc-qty-row">
+                    <label for="qty-medium">Medium van</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer medium van">&minus;</button>
+                      <input id="qty-medium" name="qtyMedium" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="Medium van" />
+                      <button type="button" data-step-by="1" aria-label="One more medium van">+</button>
+                    </div>
+                  </div>
+                  <div class="fc-qty-row">
+                    <label for="qty-lwb">LWB van</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer LWB van">&minus;</button>
+                      <input id="qty-lwb" name="qtyLwb" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="LWB van" />
+                      <button type="button" data-step-by="1" aria-label="One more LWB van">+</button>
+                    </div>
+                  </div>
+                  <div class="fc-qty-row">
+                    <label for="qty-xlwb">XLWB van</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer XLWB van">&minus;</button>
+                      <input id="qty-xlwb" name="qtyXlwb" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="XLWB van" />
+                      <button type="button" data-step-by="1" aria-label="One more XLWB van">+</button>
+                    </div>
+                  </div>
+                  <div class="fc-qty-row">
+                    <label for="qty-luton">Luton van</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer Luton van">&minus;</button>
+                      <input id="qty-luton" name="qtyLuton" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="Luton van" />
+                      <button type="button" data-step-by="1" aria-label="One more Luton van">+</button>
+                    </div>
+                  </div>
+                  <div class="fc-qty-row">
+                    <label for="qty-advise">Not sure of the type — advise me</label>
+                    <div class="fc-stepper">
+                      <button type="button" data-step-by="-1" aria-label="One fewer vehicle of any type">&minus;</button>
+                      <input id="qty-advise" name="qtyAdvise" type="number" min="0" max="99" value="0" inputmode="numeric" data-vehicle="Vehicle, type to be advised" />
+                      <button type="button" data-step-by="1" aria-label="One more vehicle of any type">+</button>
+                    </div>
+                  </div>
+                </div>
+                <p class="fc-qty-total" data-qty-total aria-live="polite">0 vehicles a day</p>
+                <p class="fc-hint">
+                  Not sure of the count? Choose <em>Work it out from my volumes</em>
+                  above and we will suggest one.
+                </p>
+              </div>
+
+              <div class="fc-panel" data-show-when="demandMode:volume">
+                <p class="fc-panel-title">Your typical monthly volume</p>
+                <p class="fc-hint">Fill in whichever you know. One is enough; more gives a better estimate.</p>
+                <div class="fc-grid">
+                  <div class="fc-field">
+                    <label for="vol-pallets">Pallets per month</label>
+                    <input id="vol-pallets" name="volPallets" type="number" min="0" step="1" inputmode="numeric" data-estimate />
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-pallet-type">Pallet size</label>
+                    <select id="vol-pallet-type" name="volPalletType" data-estimate>
+                      <option value="uk">UK standard (1200 × 1000 mm)</option>
+                      <option value="euro">Euro (1200 × 800 mm)</option>
+                      <option value="mixed">Mixed or not sure</option>
+                    </select>
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-weight">Total weight per month</label>
+                    <div class="fc-unit">
+                      <input id="vol-weight" name="volWeight" type="number" min="0" step="any" inputmode="decimal" data-estimate />
+                      <select name="volWeightUnit" aria-label="Weight unit" data-estimate>
+                        <option value="kg">kg</option>
+                        <option value="t">tonnes</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-cube">Cubic volume per month <span class="fc-opt">m³</span></label>
+                    <input id="vol-cube" name="volCube" type="number" min="0" step="any" inputmode="decimal" data-estimate />
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-days">Working days per month</label>
+                    <input id="vol-days" name="volDays" type="number" min="1" max="31" value="22" inputmode="numeric" data-estimate />
+                    <p class="fc-hint">Monday to Friday is about 22.</p>
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-trips">Loads per vehicle per day</label>
+                    <select id="vol-trips" name="volTrips" data-estimate>
+                      <option value="1">1 — one load, one run</option>
+                      <option value="2">2 — reload once mid-day</option>
+                      <option value="3">3 — short local runs</option>
+                    </select>
+                  </div>
+                  <div class="fc-field">
+                    <label for="vol-peak">Busiest periods</label>
+                    <select id="vol-peak" name="volPeak" data-estimate>
+                      <option value="0">Steady all year</option>
+                      <option value="0.25">Up to 25% busier at peak</option>
+                      <option value="0.5">Up to 50% busier at peak</option>
+                      <option value="1">Peak is double a normal month</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="fc-estimate" aria-live="polite">
+                  <p class="fc-estimate-title">Suggested daily fleet</p>
+                  <div data-estimate-output>
+                    <p class="fc-hint">Enter pallets, weight or cubic metres to see a suggestion.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fc-field fc-field-wide">
+                <label for="fc-goods">What do you typically move? <span class="fc-opt">optional</span></label>
+                <textarea id="fc-goods" name="goods" rows="2" placeholder="For example: palletised flooring, roll cages of chilled food, boxed parcels"></textarea>
+              </div>
+            </fieldset>
+
+            <!-- ---------- step 3: schedule ---------- -->
+            <fieldset class="fc-step" data-step="3">
+              <legend class="fc-step-title">Schedule and contract</legend>
+              <p class="fc-step-lede">When the vehicles are needed, and for how long.</p>
+
+              <fieldset class="console-field">
+                <legend>Pattern of work</legend>
+                <div class="options">
+                  <input type="radio" name="pattern" id="pat-weekdays" value="Every weekday" checked />
+                  <label for="pat-weekdays">Every weekday</label>
+                  <input type="radio" name="pattern" id="pat-days" value="Set days each week" />
+                  <label for="pat-days">Set days each week</label>
+                  <input type="radio" name="pattern" id="pat-monthly" value="Monthly allocation" />
+                  <label for="pat-monthly">Monthly allocation</label>
+                  <input type="radio" name="pattern" id="pat-flex" value="Varies, called off against a contract" />
+                  <label for="pat-flex">Varies week to week</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="console-field" data-show-when="pattern:Set days each week" data-required-group="days">
+                <legend>Which days?</legend>
+                <div class="options">
+                  <input type="checkbox" name="days" id="day-mon" value="Mon" />
+                  <label for="day-mon">Mon</label>
+                  <input type="checkbox" name="days" id="day-tue" value="Tue" />
+                  <label for="day-tue">Tue</label>
+                  <input type="checkbox" name="days" id="day-wed" value="Wed" />
+                  <label for="day-wed">Wed</label>
+                  <input type="checkbox" name="days" id="day-thu" value="Thu" />
+                  <label for="day-thu">Thu</label>
+                  <input type="checkbox" name="days" id="day-fri" value="Fri" />
+                  <label for="day-fri">Fri</label>
+                  <input type="checkbox" name="days" id="day-sat" value="Sat" />
+                  <label for="day-sat">Sat</label>
+                  <input type="checkbox" name="days" id="day-sun" value="Sun" />
+                  <label for="day-sun">Sun</label>
+                </div>
+                <div class="fc-field fc-field-inline">
+                  <label for="fc-every">How often</label>
+                  <select id="fc-every" name="every">
+                    <option>Every week</option>
+                    <option>Every other week</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <div class="fc-grid" data-show-when="pattern:Monthly allocation">
+                <div class="fc-field">
+                  <label for="fc-vehicle-days">Vehicle-days per month</label>
+                  <input id="fc-vehicle-days" name="vehicleDays" type="number" min="1" inputmode="numeric" required />
+                  <p class="fc-hint">One van for one day is one vehicle-day.</p>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-fixed-dates">Any fixed dates? <span class="fc-opt">optional</span></label>
+                  <input id="fc-fixed-dates" name="fixedDates" type="text" placeholder="For example: last 3 working days of the month" />
+                </div>
+              </div>
+
+              <div class="fc-grid">
+                <div class="fc-field">
+                  <label for="fc-shift">Usual start time</label>
+                  <select id="fc-shift" name="shift">
+                    <option>Early, before 7am</option>
+                    <option selected>Morning, 7am to 10am</option>
+                    <option>Daytime, after 10am</option>
+                    <option>Evening</option>
+                    <option>Overnight</option>
+                    <option>Varies</option>
+                  </select>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-duration">Contract length</label>
+                  <select id="fc-duration" name="duration" required>
+                    <option value="">Choose a length</option>
+                    <option>Rolling monthly</option>
+                    <option>3 months</option>
+                    <option>6 months</option>
+                    <option>12 months</option>
+                    <option>24 months or longer</option>
+                    <option>Not sure yet</option>
+                  </select>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-start">Estimated start date</label>
+                  <input id="fc-start" name="startDate" type="date" required />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-current">How is this covered today? <span class="fc-opt">optional</span></label>
+                  <select id="fc-current" name="currentCover">
+                    <option value="">Choose one</option>
+                    <option>Our own vehicles</option>
+                    <option>Another courier or haulier</option>
+                    <option>Ad-hoc bookings as needed</option>
+                    <option>New requirement</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="options fc-single">
+                <input type="checkbox" name="bankHolidays" id="fc-bank" value="Yes" />
+                <label for="fc-bank">We need cover on bank holidays</label>
+              </div>
+            </fieldset>
+
+            <!-- ---------- step 4: operations ---------- -->
+            <fieldset class="fc-step" data-step="4">
+              <legend class="fc-step-title">How the work runs</legend>
+              <p class="fc-step-lede">Routes, drivers and any equipment or compliance the vehicles need.</p>
+
+              <fieldset class="console-field">
+                <legend>Type of route</legend>
+                <div class="options">
+                  <input type="radio" name="route" id="route-multi" value="Multi-drop" checked />
+                  <label for="route-multi">Multi-drop</label>
+                  <input type="radio" name="route" id="route-p2p" value="Point-to-point" />
+                  <label for="route-p2p">Point-to-point</label>
+                  <input type="radio" name="route" id="route-mix" value="Mix of both" />
+                  <label for="route-mix">Mix of both</label>
+                </div>
+              </fieldset>
+
+              <div class="fc-grid">
+                <div class="fc-field" data-show-when="route:Multi-drop|Mix of both">
+                  <label for="fc-drops">Drops per vehicle per day</label>
+                  <select id="fc-drops" name="drops">
+                    <option>1 to 10</option>
+                    <option selected>11 to 25</option>
+                    <option>26 to 50</option>
+                    <option>More than 50</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-miles">Daily mileage per vehicle</label>
+                  <select id="fc-miles" name="miles">
+                    <option>Up to 50 miles</option>
+                    <option selected>50 to 100 miles</option>
+                    <option>100 to 200 miles</option>
+                    <option>200 to 300 miles</option>
+                    <option>More than 300 miles</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-area">Operating area</label>
+                  <select id="fc-area" name="area">
+                    <option>Local</option>
+                    <option selected>Regional</option>
+                    <option>Long-distance, nationwide</option>
+                  </select>
+                </div>
+                <div class="fc-field">
+                  <label for="fc-base">Main collection postcode <span class="fc-opt">if different</span></label>
+                  <input id="fc-base" name="basePostcode" type="text" maxlength="8" placeholder="Depot or warehouse" data-validate="postcode-optional" />
+                </div>
+              </div>
+
+              <fieldset class="console-field">
+                <legend>Drivers</legend>
+                <div class="options">
+                  <input type="radio" name="driver" id="drv-supplied" value="Supplied driver" checked />
+                  <label for="drv-supplied">Supplied driver</label>
+                  <input type="radio" name="driver" id="drv-self" value="Self-drive, vehicle only" />
+                  <label for="drv-self">Self-drive, vehicle only</label>
+                  <input type="radio" name="driver" id="drv-mix" value="Mix of both" />
+                  <label for="drv-mix">Mix of both</label>
+                </div>
+                <div class="options fc-sub" data-show-when="driver:Supplied driver|Mix of both">
+                  <input type="checkbox" name="crew" id="crew-two" value="Two-person crew" />
+                  <label for="crew-two">Two-person crew</label>
+                  <input type="checkbox" name="crew" id="crew-load" value="Driver helps load and unload" />
+                  <label for="crew-load">Driver helps load and unload</label>
+                  <input type="checkbox" name="crew" id="crew-ppe" value="Site induction or PPE needed" />
+                  <label for="crew-ppe">Site induction or PPE</label>
+                </div>
+                <p class="fc-hint" data-show-when="driver:Self-drive, vehicle only|Mix of both">
+                  Your drivers need a full UK car (category B) licence for vans
+                  up to 3.5 tonnes.
+                </p>
+              </fieldset>
+
+              <fieldset class="console-field">
+                <legend>Equipment and compliance <span class="fc-opt">tick all that apply</span></legend>
+                <div class="options">
+                  <input type="checkbox" name="needs" id="need-ulez" value="London ULEZ compliant" />
+                  <label for="need-ulez">London ULEZ</label>
+                  <input type="checkbox" name="needs" id="need-cc" value="London Congestion Charge zone" />
+                  <label for="need-cc">Congestion Charge zone</label>
+                  <input type="checkbox" name="needs" id="need-caz" value="Clean Air Zone outside London" />
+                  <label for="need-caz">Clean Air Zone elsewhere</label>
+                  <input type="checkbox" name="needs" id="need-tail" value="Tail-lift" />
+                  <label for="need-tail">Tail-lift</label>
+                  <input type="checkbox" name="needs" id="need-temp" value="Temperature control" />
+                  <label for="need-temp">Temperature control</label>
+                  <input type="checkbox" name="needs" id="need-rack" value="Racking or shelving" />
+                  <label for="need-rack">Racking or shelving</label>
+                  <input type="checkbox" name="needs" id="need-pump" value="Pallet truck on board" />
+                  <label for="need-pump">Pallet truck</label>
+                  <input type="checkbox" name="needs" id="need-pod" value="Photo or signature proof of delivery" />
+                  <label for="need-pod">Proof of delivery</label>
+                  <input type="checkbox" name="needs" id="need-track" value="Live tracking updates" />
+                  <label for="need-track">Live tracking</label>
+                  <input type="checkbox" name="needs" id="need-adr" value="Dangerous goods (ADR)" />
+                  <label for="need-adr">Dangerous goods (ADR)</label>
+                </div>
+              </fieldset>
+
+              <div class="fc-grid">
+                <div class="fc-field" data-show-when="needs:Clean Air Zone outside London">
+                  <label for="fc-caz">Which Clean Air Zones?</label>
+                  <input id="fc-caz" name="cazList" type="text" placeholder="For example: Birmingham, Bristol" />
+                </div>
+                <div class="fc-field" data-show-when="needs:Temperature control">
+                  <label for="fc-temp">Temperature range</label>
+                  <select id="fc-temp" name="tempRange">
+                    <option>Chilled, 0 to 5°C</option>
+                    <option>Frozen, −18°C or below</option>
+                    <option>Ambient controlled</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
+                <div class="fc-field" data-show-when="needs:Dangerous goods (ADR)">
+                  <label for="fc-adr">What are the goods? <span class="fc-opt">UN number or class if known</span></label>
+                  <input id="fc-adr" name="adrDetail" type="text" />
+                </div>
+                <div class="fc-field">
+                  <label for="fc-value">Typical value of one vehicle load</label>
+                  <select id="fc-value" name="loadValue">
+                    <option>Under £10,000</option>
+                    <option>£10,000 to £25,000</option>
+                    <option>£25,000 to £50,000</option>
+                    <option>Over £50,000</option>
+                    <option selected>Not sure</option>
+                  </select>
+                  <p class="fc-hint">Helps us arrange the right level of goods-in-transit cover.</p>
+                </div>
+              </div>
+
+              <div class="fc-field fc-field-wide">
+                <label for="fc-access">Site access or delivery restrictions <span class="fc-opt">optional</span></label>
+                <textarea id="fc-access" name="access" rows="2" placeholder="Height barriers, booking-in slots, loading bays, residential streets"></textarea>
+              </div>
+            </fieldset>
+
+            <!-- ---------- step 5: review ---------- -->
+            <fieldset class="fc-step" data-step="5">
+              <legend class="fc-step-title">Check and send</legend>
+              <p class="fc-step-lede">Check your answers, then send them to us by email.</p>
+
+              <div class="fc-review" data-review></div>
+
+              <div class="fc-field fc-field-wide">
+                <label for="fc-notes">Anything else we should know? <span class="fc-opt">optional</span></label>
+                <textarea id="fc-notes" name="notes" rows="3"></textarea>
+              </div>
+
+              <div class="fc-consent">
+                <p class="fc-privacy">
+                  Maa Tara Solutions Ltd will use these details only to reply to
+                  this enquiry and prepare a quote. We do not share them with
+                  anyone else unless we need a subcontracted operator to price
+                  the work, and we keep them only as long as we need to deal with
+                  your enquiry. You can ask us to see or delete your details at any
+                  time by emailing Maa7tara@gmail.com.
+                </p>
+                <div class="fc-check">
+                  <input type="checkbox" name="consent" id="fc-consent" value="Yes" required />
+                  <label for="fc-consent">I agree to Maa Tara Solutions Ltd using these details to respond to this enquiry.</label>
+                </div>
+                <div class="fc-check">
+                  <input type="checkbox" name="marketing" id="fc-marketing" value="Yes" />
+                  <label for="fc-marketing">Send me occasional updates about capacity and services. <span class="fc-opt">optional, unsubscribe any time</span></label>
+                </div>
+              </div>
+
+              <div class="console-actions">
+                <button class="btn btn-primary" type="button" data-send>Send enquiry by email</button>
+                <button class="btn btn-quiet" type="button" data-copy-enquiry>Copy enquiry</button>
+              </div>
+              <p class="console-status" data-send-status role="status" aria-live="polite"></p>
+              <p class="fc-hint">
+                Sending opens your email app with everything filled in. If
+                nothing opens, choose <em>Copy enquiry</em> and paste it into an
+                email to <a href="mailto:Maa7tara@gmail.com">Maa7tara@gmail.com</a>.
+              </p>
+            </fieldset>
+
+            <div class="fc-nav">
+              <button class="btn btn-quiet" type="button" data-prev hidden>Back</button>
+              <button class="btn btn-primary" type="button" data-next>Continue</button>
+            </div>
+          </form>
+
+          <aside class="fc-side" aria-label="Your enquiry so far">
+            <div class="jobsheet">
+              <p class="jobsheet-title">Your enquiry</p>
+              <dl>
+                <div class="jobsheet-row">
+                  <dt>Company</dt>
+                  <dd data-side="company">—</dd>
+                </div>
+                <div class="jobsheet-row">
+                  <dt>Vehicles</dt>
+                  <dd data-side="vehicles">—</dd>
+                </div>
+                <div class="jobsheet-row">
+                  <dt>Pattern</dt>
+                  <dd data-side="pattern">—</dd>
+                </div>
+                <div class="jobsheet-row">
+                  <dt>Contract</dt>
+                  <dd data-side="duration">—</dd>
+                </div>
+                <div class="jobsheet-row">
+                  <dt>Start</dt>
+                  <dd data-side="start">—</dd>
+                </div>
+                <div class="jobsheet-row">
+                  <dt>Drivers</dt>
+                  <dd data-side="driver">—</dd>
+                </div>
+              </dl>
+              <p class="jobsheet-note">
+                Prefer to talk it through? Phone 07741801735.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-meta">
+        Courier and logistics services across the UK. ©
+        <span id="current-year">2026</span> Maa Tara Solutions Ltd.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="fleet-contracts.js"></script>
+  </body>
+</html>
