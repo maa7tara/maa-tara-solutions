@@ -119,23 +119,33 @@
 
   /* ---------- UK formats ---------- */
 
-  function normalisePhone(raw) {
-    var digits = String(raw).replace(/[\s().-]/g, "");
-    if (/^\+44/.test(digits)) digits = "0" + digits.slice(3);
-    else if (/^0044/.test(digits)) digits = "0" + digits.slice(4);
-    digits = digits.replace(/^0\(?0\)?/, "0");
-    return /^0\d{9,10}$/.test(digits) ? digits : "";
+  /* The +44 sits in front of the phone box, so visitors type the national
+     number. Anything they paste with +44, 0044 or a leading 0 still works. */
+  function phoneDigits(raw) {
+    var s = String(raw).replace(/[^\d+]/g, "");
+    if (/^\+44/.test(s)) s = s.slice(3);
+    else if (/^0044/.test(s)) s = s.slice(4);
+    else if (/^\+/.test(s)) return null;
+    return s.replace(/^0/, "");
   }
 
-  function formatPhone(digits) {
-    if (/^07\d{9}$/.test(digits)) return digits.slice(0, 5) + " " + digits.slice(5);
-    if (/^02\d{9}$/.test(digits)) {
-      return digits.slice(0, 3) + " " + digits.slice(3, 7) + " " + digits.slice(7);
-    }
-    if (/^0[38]\d{9}$/.test(digits)) {
-      return digits.slice(0, 4) + " " + digits.slice(4, 7) + " " + digits.slice(7);
-    }
-    return digits.slice(0, 5) + " " + digits.slice(5);
+  function phoneKind(n) {
+    if (/^7[1-9]\d{8}$/.test(n)) return "mobile";
+    if (/^[12]\d{8,9}$/.test(n)) return "landline";
+    if (/^3\d{9}$/.test(n)) return "03 business number";
+    if (/^80[08]\d{6,7}$/.test(n)) return "freephone number";
+    return "";
+  }
+
+  function normalisePhone(raw) {
+    var n = phoneDigits(raw);
+    return n && phoneKind(n) ? n : "";
+  }
+
+  function formatPhone(n) {
+    if (/^2/.test(n)) return n.slice(0, 2) + " " + n.slice(2, 6) + " " + n.slice(6);
+    if (/^[38]/.test(n)) return n.slice(0, 3) + " " + n.slice(3, 6) + " " + n.slice(6);
+    return n.slice(0, 4) + " " + n.slice(4);
   }
 
   function normalisePostcode(raw) {
@@ -151,19 +161,209 @@
     return /^(\d{8}|[A-Z]{2}\d{6})$/.test(compact) ? compact : "";
   }
 
-  /* Tidy formats as the visitor leaves each field. */
+  var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  /* Common mistyped email domains. A gentle "did you mean", never a block. */
+  var COMMON_DOMAINS = [
+    "gmail.com", "googlemail.com", "hotmail.com", "hotmail.co.uk", "outlook.com",
+    "live.co.uk", "yahoo.com", "yahoo.co.uk", "icloud.com", "btinternet.com",
+    "aol.com", "sky.com", "virginmedia.com"
+  ];
+
+  function editDistance(a, b) {
+    var row = [];
+    for (var j = 0; j <= b.length; j++) row[j] = j;
+    for (var i = 1; i <= a.length; i++) {
+      var prev = row[0];
+      row[0] = i;
+      for (j = 1; j <= b.length; j++) {
+        var keep = row[j];
+        row[j] = Math.min(row[j] + 1, row[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prev = keep;
+      }
+    }
+    return row[b.length];
+  }
+
+  function emailSuggestion(email) {
+    var at = email.lastIndexOf("@");
+    if (at < 1) return "";
+    var domain = email.slice(at + 1).toLowerCase();
+    var fixed = domain
+      .replace(/\.(con|cmo|cm|ocm)$/, ".com")
+      .replace(/\.(co\.k|couk|co\.ukk|uk\.co)$/, ".co.uk");
+    if (COMMON_DOMAINS.indexOf(fixed) === -1 && fixed.length >= 5) {
+      COMMON_DOMAINS.some(function (known) {
+        if (editDistance(fixed, known) <= 2) {
+          fixed = known;
+          return true;
+        }
+        return false;
+      });
+    }
+    return fixed !== domain ? email.slice(0, at + 1) + fixed : "";
+  }
+
+  /* ---------- live feedback under phone, email and postcode ---------- */
+
+  function setLive(name, state, text) {
+    var live = form.querySelector('[data-live="' + name + '"]');
+    if (!live) return null;
+    if (!live.hasAttribute("data-default")) {
+      live.setAttribute("data-default", live.textContent.trim());
+    }
+    live.classList.toggle("is-ok", state === "ok");
+    live.classList.toggle("is-problem", state === "problem");
+    live.textContent = state === "default" ? live.getAttribute("data-default") : text;
+    return live;
+  }
+
+  function checkPhone(onLeave) {
+    var raw = value("phone");
+    var n = phoneDigits(raw);
+    if (!raw) return setLive("phone", "default");
+    if (n === null) return setLive("phone", "problem", "This form takes UK numbers only.");
+    var kind = phoneKind(n);
+    if (kind) return setLive("phone", "ok", "Looks right: UK " + kind + ", +44 " + formatPhone(n));
+    if (onLeave || n.length >= 10) {
+      return setLive("phone", "problem", "That does not look like a UK number. Mobiles start with 7 and have 10 digits after the +44.");
+    }
+    setLive("phone", "default");
+  }
+
+  function checkEmail() {
+    var email = value("email");
+    if (!email) return setLive("email", "default");
+    if (!EMAIL_PATTERN.test(email)) {
+      return setLive("email", "problem", "Check the address. It should look like name@company.co.uk");
+    }
+    var better = emailSuggestion(email);
+    if (!better) return setLive("email", "ok", "Looks right.");
+    var live = setLive("email", "problem", "Did you mean " + better + "? ");
+    var fix = document.createElement("button");
+    fix.type = "button";
+    fix.className = "fc-edit";
+    fix.textContent = "Use this";
+    fix.addEventListener("click", function () {
+      field("email").value = better;
+      checkEmail();
+      field("email").focus();
+    });
+    live.appendChild(fix);
+  }
+
+  /* Postcodes are checked against postcodes.io, a free public lookup built on
+     Office for National Statistics data. If it cannot be reached the form
+     carries on with the format check alone. */
+  var lookups = {};
+  var fillingRegion = false;
+
+  function lookupPostcode(postcode) {
+    if (lookups[postcode]) return lookups[postcode].promise;
+    var entry = { status: "pending", result: null };
+    entry.promise = fetch("https://api.postcodes.io/postcodes/" + encodeURIComponent(postcode.replace(" ", "")))
+      .then(function (response) {
+        if (response.status === 404) return { status: "missing" };
+        if (!response.ok) return { status: "error" };
+        return response.json().then(function (data) {
+          return { status: "ok", result: data.result };
+        });
+      })
+      .catch(function () {
+        return { status: "error" };
+      })
+      .then(function (outcome) {
+        entry.status = outcome.status;
+        entry.result = outcome.result || null;
+        if (entry.status === "error") delete lookups[postcode];
+        return entry;
+      });
+    lookups[postcode] = entry;
+    return entry.promise;
+  }
+
+  function regionFor(result) {
+    return result.country === "England" ? result.region : result.country;
+  }
+
+  function fillRegion(name) {
+    var select = field("region");
+    if (!select || !name) return;
+    if (select.value && !select.hasAttribute("data-auto")) return;
+    var match = Array.prototype.find.call(select.options, function (option) {
+      return option.text.toLowerCase() === name.toLowerCase();
+    });
+    if (!match) return;
+    select.value = match.value;
+    select.setAttribute("data-auto", "");
+    fillingRegion = true;
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+    fillingRegion = false;
+  }
+
+  function checkPostcode(input, onLeave) {
+    var raw = input.value.trim();
+    if (!raw) return setLive(input.name, "default");
+    var postcode = normalisePostcode(raw);
+    if (!postcode) {
+      if (onLeave) setLive(input.name, "problem", "Enter a full UK postcode, like NR1 1AA");
+      else setLive(input.name, "default");
+      return;
+    }
+    if (!lookups[postcode] || lookups[postcode].status === "pending") {
+      setLive(input.name, "checking", "Checking postcode…");
+    }
+    lookupPostcode(postcode).then(function (entry) {
+      if (normalisePostcode(input.value) !== postcode) return;
+      if (entry.status === "ok") {
+        var place = [entry.result.admin_district, regionFor(entry.result)].filter(Boolean).join(", ");
+        setLive(input.name, "ok", "Found: " + place);
+        if (input.hasAttribute("data-fills-region")) fillRegion(regionFor(entry.result));
+      } else if (entry.status === "missing") {
+        setLive(input.name, "problem", "We cannot find this postcode. Please check it.");
+      } else {
+        setLive(input.name, "checking", "We could not check this postcode just now, but you can carry on.");
+      }
+    });
+  }
+
+  var postcodeTimer = null;
+
+  form.addEventListener("input", function (event) {
+    var el = event.target;
+    if (el.name === "phone") checkPhone(false);
+    else if (el.name === "email") setLive("email", "default");
+    else if (el.getAttribute("data-validate") === "postcode") {
+      window.clearTimeout(postcodeTimer);
+      postcodeTimer = window.setTimeout(function () {
+        checkPostcode(el, false);
+      }, 450);
+    }
+  });
+
+  form.addEventListener("change", function (event) {
+    if (event.target.name === "region" && !fillingRegion) {
+      event.target.removeAttribute("data-auto");
+    }
+  });
+
+  /* Tidy formats and check values as the visitor leaves each field. */
   form.addEventListener(
     "blur",
     function (event) {
       var el = event.target;
-      if (!el.value) return;
       if (el.name === "phone") {
         var phone = normalisePhone(el.value);
         if (phone) el.value = formatPhone(phone);
-      } else if (el.name === "postcode" || el.name === "basePostcode") {
+        checkPhone(true);
+      } else if (el.name === "email") {
+        checkEmail();
+      } else if (el.getAttribute && el.getAttribute("data-validate") === "postcode") {
         var postcode = normalisePostcode(el.value);
         if (postcode) el.value = postcode;
-      } else if (el.name === "companyNumber") {
+        window.clearTimeout(postcodeTimer);
+        checkPostcode(el, true);
+      } else if (el.name === "companyNumber" && el.value) {
         var crn = normaliseCompanyNumber(el.value);
         if (crn) el.value = crn;
       }
@@ -398,12 +598,7 @@
     rows.push(["Daily mileage", value("miles")]);
     rows.push(["Operating area", value("area")]);
     if (value("basePostcode")) rows.push(["Collection postcode", value("basePostcode")]);
-    var driver = value("driver");
-    var crew = form.querySelector('[name="crew"]');
-    if (crew && isShown(crew) && values("crew").length) {
-      driver += " (" + values("crew").join(", ").toLowerCase() + ")";
-    }
-    rows.push(["Drivers", driver]);
+    if (values("crew").length) rows.push(["Driver requirements", values("crew").join(", ")]);
     var needs = values("needs");
     rows.push(["Equipment and compliance", needs.length ? needs.join(", ") : "None specified"]);
     if (shownValue("cazList")) rows.push(["Clean Air Zones", value("cazList")]);
@@ -422,7 +617,7 @@
       ["Sector", sector],
       ["Contact", value("contactName") + (value("jobTitle") ? ", " + value("jobTitle") : "")],
       ["Email", value("email")],
-      ["Phone", value("phone")],
+      ["Phone", normalisePhone(value("phone")) ? "+44 " + formatPhone(normalisePhone(value("phone"))) : value("phone")],
       ["Postcode", value("postcode")],
       ["Region", value("region")],
       ["Best contact", value("contactPref")]
@@ -535,7 +730,7 @@
     setSide("pattern", pattern);
     setSide("duration", value("duration"));
     setSide("start", formatDate(value("startDate")));
-    setSide("driver", value("driver"));
+    setSide("route", value("route"));
   }
 
   /* ---------- validation ---------- */
@@ -546,7 +741,8 @@
     sectorOther: "Tell us your sector",
     contactName: "Enter a contact name",
     email: "Enter a business email address, like name@company.co.uk",
-    phone: "Enter a UK phone number, like 07123 456789 or 01603 123456",
+    phone: "Enter a UK phone number after the +44, like 7123 456789 or 1603 123456",
+    postcodeMissing: "We cannot find this postcode. Please check it",
     postcode: "Enter a full UK postcode, like NR1 1AA",
     basePostcode: "Enter a full UK postcode, or leave this blank",
     companyNumber: "Companies House numbers are 8 characters, like 01234567 or SC123456",
@@ -563,7 +759,9 @@
     });
     Array.prototype.forEach.call(step.querySelectorAll("[aria-invalid]"), function (el) {
       el.removeAttribute("aria-invalid");
-      el.removeAttribute("aria-describedby");
+      var base = el.getAttribute("data-base-describedby");
+      if (base) el.setAttribute("aria-describedby", base);
+      else el.removeAttribute("aria-describedby");
     });
     errorBox.hidden = true;
     errorBox.textContent = "";
@@ -578,7 +776,12 @@
     var host = el.closest(".fc-field, .fc-check, .fc-panel, .console-field") || el.parentNode;
     if (el.closest(".fc-field, .fc-check")) {
       el.setAttribute("aria-invalid", "true");
-      el.setAttribute("aria-describedby", id);
+      var base = el.getAttribute("data-base-describedby");
+      if (base === null) {
+        base = el.getAttribute("aria-describedby") || "";
+        el.setAttribute("data-base-describedby", base);
+      }
+      el.setAttribute("aria-describedby", (base + " " + id).trim());
     }
     host.appendChild(note);
     problems.push({ el: el, message: message });
@@ -596,14 +799,14 @@
 
       if (el.required && !v) {
         flag(el, MESSAGES[el.name] || "This field is needed", problems);
-      } else if (el.type === "email" && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+      } else if (el.type === "email" && v && !EMAIL_PATTERN.test(v)) {
         flag(el, MESSAGES.email, problems);
       } else if (rule === "phone" && v && !normalisePhone(v)) {
         flag(el, MESSAGES.phone, problems);
       } else if (rule === "postcode" && v && !normalisePostcode(v)) {
-        flag(el, MESSAGES.postcode, problems);
-      } else if (rule === "postcode-optional" && v && !normalisePostcode(v)) {
-        flag(el, MESSAGES.basePostcode, problems);
+        flag(el, MESSAGES[el.name] || MESSAGES.postcode, problems);
+      } else if (rule === "postcode" && v && (lookups[normalisePostcode(v)] || {}).status === "missing") {
+        flag(el, MESSAGES.postcodeMissing, problems);
       } else if (el.name === "companyNumber" && v && !normaliseCompanyNumber(v)) {
         flag(el, MESSAGES.companyNumber, problems);
       } else if (el.name === "startDate" && v && v < todayIso()) {
@@ -680,8 +883,37 @@
     step.tabIndex = -1;
   });
 
+  /* Wait briefly for any postcode lookups on this step, so a mistyped
+     postcode is caught before moving on. A slow lookup never blocks. */
+  function pendingLookups(step) {
+    var waits = Array.prototype.map.call(step.querySelectorAll('[data-validate="postcode"]'), function (el) {
+      var postcode = normalisePostcode(el.value);
+      return postcode && isShown(el) ? lookupPostcode(postcode) : null;
+    }).filter(Boolean);
+    if (!waits.length) return Promise.resolve();
+    return Promise.race([
+      Promise.all(waits),
+      new Promise(function (resolve) {
+        window.setTimeout(resolve, 4000);
+      })
+    ]);
+  }
+
+  var edits = 0;
+
   nextButton.addEventListener("click", function () {
-    if (validateStep(current)) goTo(current + 1);
+    var leaving = current;
+    var editsAtClick = edits;
+    var label = nextButton.textContent;
+    nextButton.disabled = true;
+    nextButton.textContent = "Checking…";
+    pendingLookups(steps[leaving]).then(function () {
+      nextButton.disabled = false;
+      nextButton.textContent = label;
+      /* If they changed something while we waited, let them press again. */
+      if (edits !== editsAtClick || current !== leaving) return;
+      if (validateStep(leaving)) goTo(leaving + 1);
+    });
   });
 
   prevButton.addEventListener("click", function () {
@@ -766,6 +998,7 @@
   /* Old error messages go as soon as the visitor starts fixing things;
      Continue checks the step again. */
   function onEdit() {
+    if (!fillingRegion) edits += 1;
     refresh();
     if (!errorBox.hidden) clearErrors(steps[current]);
   }

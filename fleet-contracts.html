@@ -88,12 +88,15 @@
         <div class="fc-intro-copy">
           <h1 id="fc-title">Regular vehicle capacity, on contract.</h1>
           <p class="hero-lede">
-            For businesses that need vans week in, week out. Tell us the
-            vehicles you need, or tell us how much you move each month and we
-            will work out the fleet. It takes about five minutes.
+            For businesses that need vans week in, week out. Every vehicle comes
+            with one of our own drivers, so you get the capacity without
+            managing vans, drivers or insurance. Tell us the vehicles you need,
+            or how much you move each month, and we will work out the fleet.
+            It takes about five minutes.
           </p>
         </div>
         <ul class="fc-fit">
+          <li><strong>Driver included</strong> — we do not hire out vans on their own</li>
           <li><strong>Fixed weekly runs</strong> — the same days, every week</li>
           <li><strong>Monthly allocations</strong> — a set number of vehicle-days</li>
           <li><strong>Contracts</strong> — rolling monthly up to 24 months and beyond</li>
@@ -171,15 +174,25 @@
                 </div>
                 <div class="fc-field">
                   <label for="fc-email">Business email</label>
-                  <input id="fc-email" name="email" type="email" autocomplete="email" required />
+                  <input id="fc-email" name="email" type="email" autocomplete="email" required aria-describedby="fc-email-live" />
+                  <p class="fc-live" id="fc-email-live" data-live="email" aria-live="polite"></p>
                 </div>
                 <div class="fc-field">
                   <label for="fc-phone">UK phone number</label>
-                  <input id="fc-phone" name="phone" type="tel" autocomplete="tel" placeholder="07123 456789" required data-validate="phone" />
+                  <div class="fc-tel">
+                    <span class="fc-tel-code" aria-hidden="true">+44</span>
+                    <input id="fc-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="7123 456789" maxlength="16" required data-validate="phone" aria-describedby="fc-phone-live" />
+                  </div>
+                  <p class="fc-live" id="fc-phone-live" data-live="phone" aria-live="polite">
+                    The +44 is added for you. Type the rest, without the first 0.
+                  </p>
                 </div>
                 <div class="fc-field">
                   <label for="fc-postcode">Business postcode</label>
-                  <input id="fc-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="NR1 1AA" maxlength="8" required data-validate="postcode" />
+                  <input id="fc-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="NR1 1AA" maxlength="8" required data-validate="postcode" data-fills-region aria-describedby="fc-postcode-live" />
+                  <p class="fc-live" id="fc-postcode-live" data-live="postcode" aria-live="polite">
+                    We check it and fill in your region.
+                  </p>
                 </div>
                 <div class="fc-field">
                   <label for="fc-region">Region</label>
@@ -235,7 +248,7 @@
               </fieldset>
 
               <div class="fc-panel" data-show-when="demandMode:known">
-                <p class="fc-panel-title" id="qty-title">Vehicles needed on each working day</p>
+                <p class="fc-panel-title" id="qty-title">Vans needed on each working day, each with one of our drivers</p>
                 <div class="fc-qty" role="group" aria-labelledby="qty-title">
                   <div class="fc-qty-row">
                     <label for="qty-small">Small van</label>
@@ -468,7 +481,7 @@
             <!-- ---------- step 4: operations ---------- -->
             <fieldset class="fc-step" data-step="4">
               <legend class="fc-step-title">How the work runs</legend>
-              <p class="fc-step-lede">Routes, drivers and any equipment or compliance the vehicles need.</p>
+              <p class="fc-step-lede">Routes, driver requirements and any equipment or compliance the vehicles need.</p>
 
               <fieldset class="console-field">
                 <legend>Type of route</legend>
@@ -514,21 +527,19 @@
                 </div>
                 <div class="fc-field">
                   <label for="fc-base">Main collection postcode <span class="fc-opt">if different</span></label>
-                  <input id="fc-base" name="basePostcode" type="text" maxlength="8" placeholder="Depot or warehouse" data-validate="postcode-optional" />
+                  <input id="fc-base" name="basePostcode" type="text" maxlength="8" placeholder="Depot or warehouse" data-validate="postcode" aria-describedby="fc-base-live" />
+                  <p class="fc-live" id="fc-base-live" data-live="basePostcode" aria-live="polite"></p>
                 </div>
               </div>
 
               <fieldset class="console-field">
-                <legend>Drivers</legend>
+                <legend>Our drivers <span class="fc-opt">tick anything extra you need</span></legend>
+                <p class="fc-hint">
+                  Every vehicle arrives with one of our drivers, so there is
+                  nothing for you to arrange on licences, insurance or vehicle
+                  checks.
+                </p>
                 <div class="options">
-                  <input type="radio" name="driver" id="drv-supplied" value="Supplied driver" checked />
-                  <label for="drv-supplied">Supplied driver</label>
-                  <input type="radio" name="driver" id="drv-self" value="Self-drive, vehicle only" />
-                  <label for="drv-self">Self-drive, vehicle only</label>
-                  <input type="radio" name="driver" id="drv-mix" value="Mix of both" />
-                  <label for="drv-mix">Mix of both</label>
-                </div>
-                <div class="options fc-sub" data-show-when="driver:Supplied driver|Mix of both">
                   <input type="checkbox" name="crew" id="crew-two" value="Two-person crew" />
                   <label for="crew-two">Two-person crew</label>
                   <input type="checkbox" name="crew" id="crew-load" value="Driver helps load and unload" />
@@ -536,10 +547,6 @@
                   <input type="checkbox" name="crew" id="crew-ppe" value="Site induction or PPE needed" />
                   <label for="crew-ppe">Site induction or PPE</label>
                 </div>
-                <p class="fc-hint" data-show-when="driver:Self-drive, vehicle only|Mix of both">
-                  Your drivers need a full UK car (category B) licence for vans
-                  up to 3.5 tonnes.
-                </p>
               </fieldset>
 
               <fieldset class="console-field">
@@ -679,12 +686,13 @@
                   <dd data-side="start">—</dd>
                 </div>
                 <div class="jobsheet-row">
-                  <dt>Drivers</dt>
-                  <dd data-side="driver">—</dd>
+                  <dt>Route</dt>
+                  <dd data-side="route">—</dd>
                 </div>
               </dl>
               <p class="jobsheet-note">
-                Prefer to talk it through? Phone 07741801735.
+                Every vehicle comes with one of our drivers. Prefer to talk it
+                through? Phone 07741801735.
               </p>
             </div>
           </aside>

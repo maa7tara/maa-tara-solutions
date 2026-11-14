@@ -1356,6 +1356,50 @@ button.channel-value.is-copied {
   margin-top: 0;
 }
 
+.fc-tel {
+  display: flex;
+  align-items: stretch;
+}
+
+.fc-tel-code {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0 12px;
+  border: 1px solid #9aa8ad;
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  color: var(--steel);
+  background: var(--fog-deep);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-tel input {
+  border-radius: 0 2px 2px 0;
+}
+
+.fc-live {
+  min-height: 1.45em;
+  color: var(--slate);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.fc-live.is-ok {
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.fc-live.is-ok::before {
+  content: "✓ ";
+}
+
+.fc-live.is-problem {
+  color: #9a4b00;
+  font-weight: 600;
+}
+
 .fc-error {
   order: 10;
   margin-top: 6px;
