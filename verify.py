@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).parent
-PAGES = (ROOT / "index.html", ROOT / "fleet-contracts.html")
+PAGES = (ROOT / "index.html", ROOT / "fleet-contracts.html", ROOT / "privacy.html")
 
 PLACEHOLDERS = (
     "PHONE_TBC",

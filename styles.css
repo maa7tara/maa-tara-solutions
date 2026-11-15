@@ -1096,6 +1096,51 @@ button.channel-value.is-copied {
   font-size: 13.5px;
 }
 
+.site-footer a {
+  color: inherit;
+}
+
+/* ---------- privacy notice ---------- */
+
+.legal {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) 0 24px;
+}
+
+.legal h1 {
+  font-size: clamp(38px, 6vw, 56px);
+}
+
+.legal h2 {
+  margin-top: 36px;
+  font-size: 26px;
+}
+
+.legal p,
+.legal li {
+  color: var(--tarmac);
+  line-height: 1.6;
+}
+
+.legal p {
+  margin-top: 12px;
+}
+
+.legal ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.legal li + li {
+  margin-top: 8px;
+}
+
+.legal-updated {
+  color: var(--slate);
+  font-size: 14.5px;
+}
+
 /* ---------- business contracts page ---------- */
 
 /* Components below set their own display, so make sure hidden still wins. */

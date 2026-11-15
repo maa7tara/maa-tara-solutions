@@ -30,6 +30,8 @@ after editing to confirm nothing was missed.
 | `script.js` | Menu, scrollspy, tab groups, job planner and copy buttons |
 | `fleet-contracts.html` | Business contracts page: multi-step enquiry form for recurring work |
 | `fleet-contracts.js` | Wizard steps, show/hide logic, validation, fleet estimate and email send |
+| `privacy.html` | UK GDPR privacy notice, linked from every footer and the contracts form |
+| `sitemap.xml`, `robots.txt` | Tell search engines which pages to index |
 | `verify.py` | Checks structure, links, control wiring and metadata |
 | `assets/favicon.svg` | Browser tab icon |
 | `assets/og-image.png` | Preview image used when the link is shared |
